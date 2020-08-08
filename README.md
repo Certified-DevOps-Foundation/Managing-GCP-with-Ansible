@@ -1,6 +1,10 @@
 # Managing-GCP-with-Ansible
 This repo hosts some sample implementations which can help to create large scale cloud solutions and help ease the day to day tasks at work. 
 
+# Pre-requisites
+1. A GCP account
+2. VM instances
+3. Ansible setup
 
 # Task 1
 Creating and attaching a disk on GCP Compute Engine Instance and managing (partitioning, mounting, creating filesystem) it using Ansible
