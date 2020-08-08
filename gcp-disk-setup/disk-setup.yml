@@ -1,31 +1,34 @@
 ---
-- hosts: node3
+- hosts: node2
   become: yes
   remote_user: root
   tasks:
-  - name: Create a new primary partition with a size of 1GiB
+  - name: Install required utilities
+    yum:
+      name: 'lvm*'
+      state: present
+  - name: Create a new primary partition with a size of 5GiB
     parted:
       device: /dev/sdb
       number: 1
       state: present
       part_end: 5GiB
-  - name: Create a volume group on top of /dev/sdb with physical extent size = 128KiB
+  - name: Create a volume group on top of /dev/sdb
     lvg:
       vg: vg_database
       pvs: /dev/sdb1      
       state: present
-     # force: yes
-  - name: Create a logical volume of 512m with disks /dev/sda and /dev/sdb
+  - name: Create a logical volume of 512m with disks /dev/sdb
     lvol:
       vg: vg_database
       lv: lv_mysql
       size: 512
       state: present
-  - name: Create a ext2 filesystem on /dev/sdb1
+  - name: Create a ext2 filesystem on /dev/vg_database/lv_mysql
     filesystem:
       fstype: xfs
       dev: /dev/vg_database/lv_mysql
-  - name: Mount up device by UUID
+  - name: Mount up device
     mount:
       path: /mnt/mysql_backups
       src: /dev/vg_database/lv_mysql
