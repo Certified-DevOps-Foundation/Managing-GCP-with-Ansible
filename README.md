@@ -44,8 +44,6 @@ Output should be something like [output.txt](https://github.com/Certified-DevOps
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
-Please make sure to update tests as appropriate.
-
 ## Authors
 Contributed by Sajal Tyagi [LINKEDIN](https://www.linkedin.com/in/sajaltyagi/).
 
